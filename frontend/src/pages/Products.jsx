@@ -26,16 +26,6 @@ function Products() {
   async function addProduct(e) {
     e.preventDefault();
 
-    if (Number(price) < 0) {
-      alert("Price cannot be negative");
-      return;
-    }
-
-    if (Number(quantity) < 0) {
-      alert("Quantity cannot be negative");
-      return;
-    }
-
     try {
       await api.post("/products", {
         name,
@@ -49,11 +39,9 @@ function Products() {
 
       alert("Product created successfully");
     } catch (error) {
-      console.error(error);
-
       alert(
         error?.response?.data?.detail ||
-          "Failed to create product"
+        "Failed to create product"
       );
     }
   }
@@ -74,11 +62,9 @@ function Products() {
 
       alert("Product updated successfully");
     } catch (error) {
-      console.error(error);
-
       alert(
         error?.response?.data?.detail ||
-          "Failed to update product"
+        "Failed to update product"
       );
     }
   }
@@ -97,14 +83,12 @@ function Products() {
 
       alert("Product deleted successfully");
     } catch (error) {
-      console.error(error);
       alert("Delete failed");
     }
   }
 
   function editProduct(product) {
     setEditingId(product.id);
-
     setName(product.name);
     setSku(product.sku);
     setPrice(product.price);
@@ -113,7 +97,6 @@ function Products() {
 
   function clearForm() {
     setEditingId(null);
-
     setName("");
     setSku("");
     setPrice("");
@@ -161,14 +144,7 @@ function Products() {
             onChange={(e) =>
               setName(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              boxSizing: "border-box",
-            }}
+            style={inputStyle}
           />
 
           <input
@@ -178,14 +154,7 @@ function Products() {
             onChange={(e) =>
               setSku(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              boxSizing: "border-box",
-            }}
+            style={inputStyle}
           />
 
           <input
@@ -198,49 +167,24 @@ function Products() {
             onChange={(e) =>
               setPrice(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              boxSizing: "border-box",
-            }}
+            style={inputStyle}
           />
 
           <input
             type="number"
             min="0"
-            step="1"
             required
             placeholder="Quantity"
             value={quantity}
             onChange={(e) =>
               setQuantity(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              boxSizing: "border-box",
-            }}
+            style={inputStyle}
           />
 
           <button
             type="submit"
-            style={{
-              background: editingId
-                ? "#16a34a"
-                : "#2563eb",
-              color: "white",
-              border: "none",
-              padding: "12px 20px",
-              borderRadius: "8px",
-              cursor: "pointer",
-              marginRight: "10px",
-            }}
+            style={primaryButton}
           >
             {editingId
               ? "Update Product"
@@ -251,14 +195,7 @@ function Products() {
             <button
               type="button"
               onClick={clearForm}
-              style={{
-                background: "#6b7280",
-                color: "white",
-                border: "none",
-                padding: "12px 20px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
+              style={cancelButton}
             >
               Cancel
             </button>
@@ -277,113 +214,109 @@ function Products() {
       >
         <h3>Product List</h3>
 
-        {products.length === 0 ? (
-          <p>No products found.</p>
-        ) : (
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
-            <thead>
-              <tr
-                style={{
-                  background: "#f3f4f6",
-                }}
-              >
-                <th style={{ padding: "12px" }}>
-                  ID
-                </th>
-                <th style={{ padding: "12px" }}>
-                  Name
-                </th>
-                <th style={{ padding: "12px" }}>
-                  SKU
-                </th>
-                <th style={{ padding: "12px" }}>
-                  Price
-                </th>
-                <th style={{ padding: "12px" }}>
-                  Quantity
-                </th>
-                <th style={{ padding: "12px" }}>
-                  Actions
-                </th>
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+          }}
+        >
+          <thead>
+            <tr
+              style={{
+                background: "#f3f4f6",
+              }}
+            >
+              <th>ID</th>
+              <th>Name</th>
+              <th>SKU</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.sku}</td>
+                <td>₹{product.price}</td>
+                <td>{product.quantity}</td>
+
+                <td>
+                  <button
+                    onClick={() =>
+                      editProduct(product)
+                    }
+                    style={editButton}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      deleteProduct(product.id)
+                    }
+                    style={deleteButton}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
-            </thead>
-
-            <tbody>
-              {products.map((product) => (
-                <tr
-                  key={product.id}
-                  style={{
-                    borderBottom:
-                      "1px solid #e5e7eb",
-                  }}
-                >
-                  <td style={{ padding: "12px" }}>
-                    {product.id}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    {product.name}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    {product.sku}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    ${product.price}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    {product.quantity}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    <button
-                      onClick={() =>
-                        editProduct(product)
-                      }
-                      style={{
-                        background: "#2563eb",
-                        color: "white",
-                        border: "none",
-                        padding: "8px 12px",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                        marginRight: "8px",
-                      }}
-                    >
-                      Edit
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        deleteProduct(product.id)
-                      }
-                      style={{
-                        background: "#dc2626",
-                        color: "white",
-                        border: "none",
-                        padding: "8px 12px",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px",
+  marginBottom: "12px",
+  borderRadius: "8px",
+  border: "1px solid #d1d5db",
+  boxSizing: "border-box",
+};
+
+const primaryButton = {
+  background: "#2563eb",
+  color: "white",
+  border: "none",
+  padding: "12px 18px",
+  borderRadius: "8px",
+  cursor: "pointer",
+  marginRight: "10px",
+};
+
+const cancelButton = {
+  background: "#6b7280",
+  color: "white",
+  border: "none",
+  padding: "12px 18px",
+  borderRadius: "8px",
+  cursor: "pointer",
+};
+
+const editButton = {
+  background: "#2563eb",
+  color: "white",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "6px",
+  cursor: "pointer",
+  marginRight: "8px",
+};
+
+const deleteButton = {
+  background: "#dc2626",
+  color: "white",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "6px",
+  cursor: "pointer",
+};
 
 export default Products;
