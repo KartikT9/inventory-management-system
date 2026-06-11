@@ -9,15 +9,16 @@ from .routes.customers import router as customer_router
 from .routes.orders import router as order_router
 
 Order.metadata.create_all(bind=engine)
-
 Product.metadata.create_all(bind=engine)
 Customer.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "https://inventory-frontend-4qdp.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
