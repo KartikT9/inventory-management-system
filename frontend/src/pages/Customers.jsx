@@ -85,97 +85,198 @@ function Customers() {
   }
 
   return (
-    <div>
-      <h2>Customers</h2>
+    <div style={{ padding: "20px" }}>
+      <h1
+        style={{
+          marginBottom: "25px",
+          color: "#1f2937",
+        }}
+      >
+        👥 Customers
+      </h1>
 
-      <form onSubmit={addCustomer}>
-        <input
-          required
-          placeholder="Full Name"
-          value={fullName}
-          onChange={(e) =>
-            setFullName(e.target.value)
-          }
-        />
+      <div
+        style={{
+          background: "#ffffff",
+          padding: "20px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 2px 10px rgba(0,0,0,0.08)",
+          marginBottom: "30px",
+        }}
+      >
+        <h3>Add Customer</h3>
 
-        <br />
-        <br />
+        <form onSubmit={addCustomer}>
+          <input
+            required
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) =>
+              setFullName(e.target.value)
+            }
+            style={{
+              width: "100%",
+              padding: "12px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #d1d5db",
+              boxSizing: "border-box",
+            }}
+          />
 
-        <input
-          type="email"
-          required
-          placeholder="example@gmail.com"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-        />
+          <input
+            type="email"
+            required
+            placeholder="example@gmail.com"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            style={{
+              width: "100%",
+              padding: "12px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #d1d5db",
+              boxSizing: "border-box",
+            }}
+          />
 
-        <br />
-        <br />
-
-        <input
-          type="tel"
-          required
-          maxLength="10"
-          pattern="[0-9]{10}"
-          title="Phone number must be exactly 10 digits"
-          placeholder="9876543210"
-          value={phone}
-          onChange={(e) =>
-            setPhone(
-              e.target.value.replace(
-                /\D/g,
-                ""
+          <input
+            type="tel"
+            required
+            maxLength="10"
+            placeholder="9876543210"
+            value={phone}
+            onChange={(e) =>
+              setPhone(
+                e.target.value.replace(
+                  /\D/g,
+                  ""
+                )
               )
-            )
-          }
-        />
+            }
+            style={{
+              width: "100%",
+              padding: "12px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #d1d5db",
+              boxSizing: "border-box",
+            }}
+          />
 
-        <br />
-        <br />
+          <button
+            type="submit"
+            style={{
+              background: "#2563eb",
+              color: "white",
+              border: "none",
+              padding: "12px 20px",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            Add Customer
+          </button>
+        </form>
+      </div>
 
-        <button type="submit">
-          Add Customer
-        </button>
-      </form>
+      <div
+        style={{
+          background: "#ffffff",
+          padding: "20px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 2px 10px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h3>Customer List</h3>
 
-      <br />
+        {customers.length === 0 ? (
+          <p>No customers found.</p>
+        ) : (
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
+          >
+            <thead>
+              <tr
+                style={{
+                  background: "#f3f4f6",
+                }}
+              >
+                <th style={{ padding: "12px" }}>
+                  ID
+                </th>
+                <th style={{ padding: "12px" }}>
+                  Name
+                </th>
+                <th style={{ padding: "12px" }}>
+                  Email
+                </th>
+                <th style={{ padding: "12px" }}>
+                  Phone
+                </th>
+                <th style={{ padding: "12px" }}>
+                  Actions
+                </th>
+              </tr>
+            </thead>
 
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {customers.map((customer) => (
-            <tr key={customer.id}>
-              <td>{customer.id}</td>
-              <td>{customer.full_name}</td>
-              <td>{customer.email}</td>
-              <td>{customer.phone}</td>
-
-              <td>
-                <button
-                  onClick={() =>
-                    deleteCustomer(
-                      customer.id
-                    )
-                  }
+            <tbody>
+              {customers.map((customer) => (
+                <tr
+                  key={customer.id}
+                  style={{
+                    borderBottom:
+                      "1px solid #e5e7eb",
+                  }}
                 >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <td style={{ padding: "12px" }}>
+                    {customer.id}
+                  </td>
+
+                  <td style={{ padding: "12px" }}>
+                    {customer.full_name}
+                  </td>
+
+                  <td style={{ padding: "12px" }}>
+                    {customer.email}
+                  </td>
+
+                  <td style={{ padding: "12px" }}>
+                    {customer.phone}
+                  </td>
+
+                  <td style={{ padding: "12px" }}>
+                    <button
+                      onClick={() =>
+                        deleteCustomer(
+                          customer.id
+                        )
+                      }
+                      style={{
+                        background: "#dc2626",
+                        color: "white",
+                        border: "none",
+                        padding: "8px 12px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
