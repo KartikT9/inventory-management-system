@@ -107,7 +107,9 @@ function Products() {
     <div style={{ padding: "20px" }}>
       <h1
         style={{
-          marginBottom: "25px",
+            textAlign: "center",
+          marginBottom: "30px",
+          fontSize: "48px",
           color: "#1f2937",
         }}
       >
@@ -116,11 +118,11 @@ function Products() {
 
       <div
         style={{
-          background: "#ffffff",
-          padding: "20px",
-          borderRadius: "16px",
+          background: "#fff",
+          padding: "30px",
+          borderRadius: "20px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 4px 20px rgba(0,0,0,0.08)",
           marginBottom: "30px",
         }}
       >
@@ -205,11 +207,11 @@ function Products() {
 
       <div
         style={{
-          background: "#ffffff",
-          padding: "20px",
-          borderRadius: "16px",
+          background: "#fff",
+          padding: "30px",
+          borderRadius: "20px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 4px 20px rgba(0,0,0,0.08)",
         }}
       >
         <h3>Product List</h3>
