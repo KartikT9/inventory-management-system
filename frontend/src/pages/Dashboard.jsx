@@ -29,27 +29,40 @@ function Dashboard() {
   );
 
   return (
-    <div>
-      <h2>Dashboard</h2>
+    <div
+      style={{
+        padding: "20px",
+      }}
+    >
+      <h1
+        style={{
+          marginBottom: "25px",
+          color: "#1f2937",
+        }}
+      >
+        Inventory Dashboard
+      </h1>
 
       <div
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(220px, 1fr))",
+            "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
-          marginBottom: "30px",
+          marginBottom: "35px",
         }}
       >
         <div
           style={{
             background: "#2563eb",
             color: "white",
-            padding: "20px",
-            borderRadius: "12px",
+            padding: "25px",
+            borderRadius: "16px",
+            boxShadow:
+              "0 4px 12px rgba(0,0,0,0.15)",
           }}
         >
-          <h3>Total Products</h3>
+          <h3>📦 Total Products</h3>
           <h1>{products.length}</h1>
         </div>
 
@@ -57,11 +70,13 @@ function Dashboard() {
           style={{
             background: "#16a34a",
             color: "white",
-            padding: "20px",
-            borderRadius: "12px",
+            padding: "25px",
+            borderRadius: "16px",
+            boxShadow:
+              "0 4px 12px rgba(0,0,0,0.15)",
           }}
         >
-          <h3>Total Customers</h3>
+          <h3>👥 Total Customers</h3>
           <h1>{customers.length}</h1>
         </div>
 
@@ -69,42 +84,121 @@ function Dashboard() {
           style={{
             background: "#ea580c",
             color: "white",
-            padding: "20px",
-            borderRadius: "12px",
+            padding: "25px",
+            borderRadius: "16px",
+            boxShadow:
+              "0 4px 12px rgba(0,0,0,0.15)",
           }}
         >
-          <h3>Total Orders</h3>
+          <h3>🛒 Total Orders</h3>
           <h1>{orders.length}</h1>
         </div>
       </div>
 
-      <h3
+      <div
         style={{
-          marginBottom: "15px",
+          background: "#ffffff",
+          padding: "20px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 2px 10px rgba(0,0,0,0.08)",
         }}
       >
-        Low Stock Products
-      </h3>
+        <h2
+          style={{
+            marginBottom: "15px",
+            color: "#dc2626",
+          }}
+        >
+          ⚠ Low Stock Products
+        </h2>
 
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>SKU</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
+        {lowStockProducts.length === 0 ? (
+          <p>No low stock products.</p>
+        ) : (
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
+          >
+            <thead>
+              <tr
+                style={{
+                  background: "#f3f4f6",
+                }}
+              >
+                <th
+                  style={{
+                    padding: "12px",
+                    textAlign: "left",
+                  }}
+                >
+                  Product
+                </th>
 
-        <tbody>
-          {lowStockProducts.map((product) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.sku}</td>
-              <td>{product.quantity}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <th
+                  style={{
+                    padding: "12px",
+                    textAlign: "left",
+                  }}
+                >
+                  SKU
+                </th>
+
+                <th
+                  style={{
+                    padding: "12px",
+                    textAlign: "left",
+                  }}
+                >
+                  Quantity
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {lowStockProducts.map(
+                (product) => (
+                  <tr
+                    key={product.id}
+                    style={{
+                      borderBottom:
+                        "1px solid #e5e7eb",
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: "12px",
+                      }}
+                    >
+                      {product.name}
+                    </td>
+
+                    <td
+                      style={{
+                        padding: "12px",
+                      }}
+                    >
+                      {product.sku}
+                    </td>
+
+                    <td
+                      style={{
+                        padding: "12px",
+                        color: "#dc2626",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {product.quantity}
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
