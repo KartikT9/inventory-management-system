@@ -89,7 +89,7 @@ function Customers() {
       <h1
         style={{
           marginBottom: "25px",
-          color: "#1f2937",
+          color: "white",
         }}
       >
         👥 Customers
@@ -97,11 +97,12 @@ function Customers() {
 
       <div
         style={{
-          background: "#ffffff",
+          background: "#111827",
+            color: "white",
           padding: "20px",
           borderRadius: "16px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 2px 10px rgba(0,0,0,0.3)",
           marginBottom: "30px",
         }}
       >
@@ -185,11 +186,12 @@ function Customers() {
 
       <div
         style={{
-          background: "#ffffff",
+          background: "#111827",
+            color: "white",
           padding: "20px",
           borderRadius: "16px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 2px 10px rgba(0,0,0,0.3)",
         }}
       >
         <h3>Customer List</h3>
@@ -206,7 +208,8 @@ function Customers() {
             <thead>
               <tr
                 style={{
-                  background: "#f3f4f6",
+                  background: "#2563eb",
+                  color: "white",
                 }}
               >
                 <th style={{ padding: "12px" }}>

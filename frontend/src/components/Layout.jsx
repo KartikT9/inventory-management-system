@@ -6,21 +6,15 @@ function Layout({ children }) {
   const linkStyle = (path) => ({
     color: "white",
     textDecoration: "none",
-    padding: "14px 16px",
-    borderRadius: "10px",
-    backgroundColor:
+    padding: "14px 18px",
+    borderRadius: "12px",
+    background:
       location.pathname === path
         ? "#2563eb"
-        : "#1f2937",
+        : "#1e293b",
+    fontWeight: "600",
     transition: "0.3s",
-    fontWeight:
-      location.pathname === path
-        ? "600"
-        : "400",
-    boxShadow:
-      location.pathname === path
-        ? "0 4px 10px rgba(37,99,235,0.35)"
-        : "none",
+    display: "block",
   });
 
   return (
@@ -28,47 +22,28 @@ function Layout({ children }) {
       style={{
         display: "flex",
         minHeight: "100vh",
-        backgroundColor: "#f3f4f6",
-        fontFamily:
-          "Inter, Arial, sans-serif",
+        background: "#0f172a",
+        color: "white",
+        fontFamily: "Inter, Arial, sans-serif",
       }}
     >
       <aside
         style={{
           width: "250px",
-          backgroundColor: "#111827",
-          color: "white",
+          background: "#111827",
           padding: "25px",
           boxSizing: "border-box",
-          boxShadow:
-            "2px 0 10px rgba(0,0,0,0.1)",
+          borderRight: "1px solid #374151",
         }}
       >
-        <div
+        <h2
           style={{
             textAlign: "center",
             marginBottom: "35px",
           }}
         >
-          <h2
-            style={{
-              margin: 0,
-              fontSize: "24px",
-            }}
-          >
-            📦 Inventory
-          </h2>
-
-          <p
-            style={{
-              color: "#9ca3af",
-              fontSize: "14px",
-              marginTop: "8px",
-            }}
-          >
-            Management System
-          </p>
-        </div>
+          📦 Inventory
+        </h2>
 
         <nav
           style={{
@@ -77,10 +52,7 @@ function Layout({ children }) {
             gap: "14px",
           }}
         >
-          <Link
-            to="/"
-            style={linkStyle("/")}
-          >
+          <Link to="/" style={linkStyle("/")}>
             📊 Dashboard
           </Link>
 
@@ -111,6 +83,8 @@ function Layout({ children }) {
         style={{
           flex: 1,
           padding: "35px",
+          background: "#0f172a",
+          color: "white",
           overflowX: "auto",
         }}
       >
