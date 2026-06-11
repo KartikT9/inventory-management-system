@@ -24,6 +24,11 @@ function Customers() {
   async function addCustomer(e) {
     e.preventDefault();
 
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Phone number must be exactly 10 digits");
+      return;
+    }
+
     try {
       await api.post("/customers", {
         full_name: fullName,
@@ -35,19 +40,29 @@ function Customers() {
       setEmail("");
       setPhone("");
 
-      loadCustomers();
+      await loadCustomers();
+
+      alert("Customer created successfully");
     } catch (error) {
       console.error(error);
-      alert("Failed to create customer");
+
+      alert(
+        error?.response?.data?.detail ||
+        "Failed to create customer"
+      );
     }
   }
 
   async function deleteCustomer(id) {
     try {
       await api.delete(`/customers/${id}`);
-      loadCustomers();
+
+      await loadCustomers();
+
+      alert("Customer deleted successfully");
     } catch (error) {
       console.error(error);
+      alert("Delete failed");
     }
   }
 
@@ -57,28 +72,44 @@ function Customers() {
 
       <form onSubmit={addCustomer}>
         <input
+          required
           placeholder="Full Name"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={(e) =>
+            setFullName(e.target.value)
+          }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
+          type="email"
+          required
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) =>
+            setEmail(e.target.value)
+          }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
-          placeholder="Phone"
+          type="tel"
+          required
+          pattern="[0-9]{10}"
+          title="Phone number must be exactly 10 digits"
+          placeholder="Phone Number"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) =>
+            setPhone(e.target.value)
+          }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit">
           Add Customer

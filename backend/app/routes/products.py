@@ -70,6 +70,7 @@ def get_product(
 
     return product
 
+
 @router.put("/products/{product_id}")
 def update_product(
     product_id: int,
@@ -86,6 +87,12 @@ def update_product(
             detail="Product not found"
         )
 
+    if product.quantity < 0:
+        raise HTTPException(
+            status_code=400,
+            detail="Quantity cannot be negative"
+        )
+
     existing.name = product.name
     existing.sku = product.sku
     existing.price = product.price
@@ -95,6 +102,7 @@ def update_product(
     db.refresh(existing)
 
     return existing
+
 
 @router.delete("/products/{product_id}")
 def delete_product(

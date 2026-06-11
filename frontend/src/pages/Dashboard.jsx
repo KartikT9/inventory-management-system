@@ -34,28 +34,57 @@ function Dashboard() {
 
       <div
         style={{
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "20px",
           marginBottom: "30px",
         }}
       >
-        <div>
+        <div
+          style={{
+            background: "#2563eb",
+            color: "white",
+            padding: "20px",
+            borderRadius: "12px",
+          }}
+        >
           <h3>Total Products</h3>
-          <p>{products.length}</p>
+          <h1>{products.length}</h1>
         </div>
 
-        <div>
+        <div
+          style={{
+            background: "#16a34a",
+            color: "white",
+            padding: "20px",
+            borderRadius: "12px",
+          }}
+        >
           <h3>Total Customers</h3>
-          <p>{customers.length}</p>
+          <h1>{customers.length}</h1>
         </div>
 
-        <div>
+        <div
+          style={{
+            background: "#ea580c",
+            color: "white",
+            padding: "20px",
+            borderRadius: "12px",
+          }}
+        >
           <h3>Total Orders</h3>
-          <p>{orders.length}</p>
+          <h1>{orders.length}</h1>
         </div>
       </div>
 
-      <h3>Low Stock Products</h3>
+      <h3
+        style={{
+          marginBottom: "15px",
+        }}
+      >
+        Low Stock Products
+      </h3>
 
       <table border="1" cellPadding="10">
         <thead>

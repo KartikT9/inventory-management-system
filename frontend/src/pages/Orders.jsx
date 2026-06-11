@@ -24,6 +24,11 @@ function Orders() {
   async function addOrder(e) {
     e.preventDefault();
 
+    if (Number(quantity) <= 0) {
+      alert("Quantity must be greater than 0");
+      return;
+    }
+
     try {
       await api.post("/orders", {
         customer_id: Number(customerId),
@@ -35,9 +40,12 @@ function Orders() {
       setProductId("");
       setQuantity("");
 
-      loadOrders();
+      await loadOrders();
+
+      alert("Order created successfully");
     } catch (error) {
       console.error(error);
+
       alert(
         error?.response?.data?.detail ||
         "Failed to create order"
@@ -48,9 +56,14 @@ function Orders() {
   async function deleteOrder(id) {
     try {
       await api.delete(`/orders/${id}`);
-      loadOrders();
+
+      await loadOrders();
+
+      alert("Order deleted successfully");
     } catch (error) {
       console.error(error);
+
+      alert("Delete failed");
     }
   }
 
@@ -60,6 +73,9 @@ function Orders() {
 
       <form onSubmit={addOrder}>
         <input
+          type="number"
+          min="1"
+          required
           placeholder="Customer ID"
           value={customerId}
           onChange={(e) =>
@@ -67,9 +83,13 @@ function Orders() {
           }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
+          type="number"
+          min="1"
+          required
           placeholder="Product ID"
           value={productId}
           onChange={(e) =>
@@ -77,9 +97,13 @@ function Orders() {
           }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
+          type="number"
+          min="1"
+          required
           placeholder="Quantity"
           value={quantity}
           onChange={(e) =>
@@ -87,7 +111,8 @@ function Orders() {
           }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit">
           Create Order
