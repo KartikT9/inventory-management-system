@@ -83,8 +83,10 @@ function Orders() {
     <div style={{ padding: "20px" }}>
       <h1
         style={{
-          marginBottom: "25px",
-          color: "#1f2937",
+          textAlign: "center",
+          marginBottom: "30px",
+          fontSize: "48px",
+          color: "white",
         }}
       >
         🛒 Orders
@@ -92,11 +94,12 @@ function Orders() {
 
       <div
         style={{
-          background: "#ffffff",
-          padding: "20px",
-          borderRadius: "16px",
+          background: "#111827",
+          color: "white",
+          padding: "30px",
+          borderRadius: "20px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 4px 20px rgba(0,0,0,0.3)",
           marginBottom: "30px",
         }}
       >
@@ -109,13 +112,7 @@ function Orders() {
             onChange={(e) =>
               setCustomerId(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-            }}
+            style={inputStyle}
           >
             <option value="">
               Select Customer
@@ -126,7 +123,7 @@ function Orders() {
                 key={customer.id}
                 value={customer.id}
               >
-                {customer.id} - {customer.full_name}
+                {customer.full_name}
               </option>
             ))}
           </select>
@@ -137,13 +134,7 @@ function Orders() {
             onChange={(e) =>
               setProductId(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-            }}
+            style={inputStyle}
           >
             <option value="">
               Select Product
@@ -154,7 +145,7 @@ function Orders() {
                 key={product.id}
                 value={product.id}
               >
-                {product.id} - {product.name}
+                {product.name}
               </option>
             ))}
           </select>
@@ -168,26 +159,12 @@ function Orders() {
             onChange={(e) =>
               setQuantity(e.target.value)
             }
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "12px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              boxSizing: "border-box",
-            }}
+            style={inputStyle}
           />
 
           <button
             type="submit"
-            style={{
-              background: "#2563eb",
-              color: "white",
-              border: "none",
-              padding: "12px 20px",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
+            style={primaryButton}
           >
             Create Order
           </button>
@@ -196,11 +173,12 @@ function Orders() {
 
       <div
         style={{
-          background: "#ffffff",
-          padding: "20px",
-          borderRadius: "16px",
+          background: "#111827",
+          color: "white",
+          padding: "30px",
+          borderRadius: "20px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 4px 20px rgba(0,0,0,0.3)",
         }}
       >
         <h3>Order List</h3>
@@ -217,7 +195,8 @@ function Orders() {
             <thead>
               <tr
                 style={{
-                  background: "#f3f4f6",
+                  background: "#2563eb",
+                  color: "white",
                 }}
               >
                 <th style={{ padding: "12px" }}>
@@ -247,7 +226,7 @@ function Orders() {
                   key={order.id}
                   style={{
                     borderBottom:
-                      "1px solid #e5e7eb",
+                      "1px solid #374151",
                   }}
                 >
                   <td style={{ padding: "12px" }}>
@@ -267,7 +246,7 @@ function Orders() {
                   </td>
 
                   <td style={{ padding: "12px" }}>
-                    ${order.total_amount}
+                    ₹{order.total_amount}
                   </td>
 
                   <td style={{ padding: "12px" }}>
@@ -275,14 +254,7 @@ function Orders() {
                       onClick={() =>
                         deleteOrder(order.id)
                       }
-                      style={{
-                        background: "#dc2626",
-                        color: "white",
-                        border: "none",
-                        padding: "8px 12px",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                      }}
+                      style={deleteButton}
                     >
                       Delete
                     </button>
@@ -296,5 +268,34 @@ function Orders() {
     </div>
   );
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px",
+  marginBottom: "12px",
+  borderRadius: "8px",
+  border: "1px solid #374151",
+  background: "#374151",
+  color: "white",
+  boxSizing: "border-box",
+};
+
+const primaryButton = {
+  background: "#2563eb",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "8px",
+  cursor: "pointer",
+};
+
+const deleteButton = {
+  background: "#dc2626",
+  color: "white",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "6px",
+  cursor: "pointer",
+};
 
 export default Orders;
