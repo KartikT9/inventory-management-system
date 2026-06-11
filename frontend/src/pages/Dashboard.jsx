@@ -29,18 +29,16 @@ function Dashboard() {
   );
 
   return (
-    <div
-      style={{
-        padding: "20px",
-      }}
-    >
+    <div style={{ padding: "20px" }}>
       <h1
         style={{
-          marginBottom: "25px",
-          color: "#1f2937",
+          textAlign: "center",
+          marginBottom: "30px",
+          fontSize: "48px",
+          color: "white",
         }}
       >
-        Inventory Dashboard
+        📊 Inventory Dashboard
       </h1>
 
       <div
@@ -58,12 +56,15 @@ function Dashboard() {
             color: "white",
             padding: "25px",
             borderRadius: "16px",
+            textAlign: "center",
             boxShadow:
-              "0 4px 12px rgba(0,0,0,0.15)",
+              "0 4px 12px rgba(0,0,0,0.3)",
           }}
         >
           <h3>📦 Total Products</h3>
-          <h1>{products.length}</h1>
+          <h1 style={{ fontSize: "56px" }}>
+            {products.length}
+          </h1>
         </div>
 
         <div
@@ -72,12 +73,15 @@ function Dashboard() {
             color: "white",
             padding: "25px",
             borderRadius: "16px",
+            textAlign: "center",
             boxShadow:
-              "0 4px 12px rgba(0,0,0,0.15)",
+              "0 4px 12px rgba(0,0,0,0.3)",
           }}
         >
           <h3>👥 Total Customers</h3>
-          <h1>{customers.length}</h1>
+          <h1 style={{ fontSize: "56px" }}>
+            {customers.length}
+          </h1>
         </div>
 
         <div
@@ -86,31 +90,35 @@ function Dashboard() {
             color: "white",
             padding: "25px",
             borderRadius: "16px",
+            textAlign: "center",
             boxShadow:
-              "0 4px 12px rgba(0,0,0,0.15)",
+              "0 4px 12px rgba(0,0,0,0.3)",
           }}
         >
           <h3>🛒 Total Orders</h3>
-          <h1>{orders.length}</h1>
+          <h1 style={{ fontSize: "56px" }}>
+            {orders.length}
+          </h1>
         </div>
       </div>
 
       <div
         style={{
-          background: "#ffffff",
-          padding: "20px",
-          borderRadius: "16px",
+          background: "#111827",
+          color: "white",
+          padding: "25px",
+          borderRadius: "20px",
           boxShadow:
-            "0 2px 10px rgba(0,0,0,0.08)",
+            "0 4px 20px rgba(0,0,0,0.3)",
         }}
       >
         <h2
           style={{
-            marginBottom: "15px",
-            color: "#dc2626",
+            marginBottom: "20px",
+            color: "#ef4444",
           }}
         >
-          ⚠ Low Stock Products
+          ⚠️ Low Stock Products
         </h2>
 
         {lowStockProducts.length === 0 ? (
@@ -125,7 +133,8 @@ function Dashboard() {
             <thead>
               <tr
                 style={{
-                  background: "#f3f4f6",
+                  background: "#2563eb",
+                  color: "white",
                 }}
               >
                 <th
@@ -164,7 +173,7 @@ function Dashboard() {
                     key={product.id}
                     style={{
                       borderBottom:
-                        "1px solid #e5e7eb",
+                        "1px solid #374151",
                     }}
                   >
                     <td
@@ -186,7 +195,7 @@ function Dashboard() {
                     <td
                       style={{
                         padding: "12px",
-                        color: "#dc2626",
+                        color: "#ef4444",
                         fontWeight: "bold",
                       }}
                     >
