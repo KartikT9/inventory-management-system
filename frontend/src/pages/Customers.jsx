@@ -24,8 +24,20 @@ function Customers() {
   async function addCustomer(e) {
     e.preventDefault();
 
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      alert(
+        "Please enter a valid email address"
+      );
+      return;
+    }
+
     if (!/^\d{10}$/.test(phone)) {
-      alert("Phone number must be exactly 10 digits");
+      alert(
+        "Phone number must be exactly 10 digits"
+      );
       return;
     }
 
@@ -48,12 +60,18 @@ function Customers() {
 
       alert(
         error?.response?.data?.detail ||
-        "Failed to create customer"
+          "Failed to create customer"
       );
     }
   }
 
   async function deleteCustomer(id) {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this customer?"
+    );
+
+    if (!confirmed) return;
+
     try {
       await api.delete(`/customers/${id}`);
 
@@ -86,7 +104,7 @@ function Customers() {
         <input
           type="email"
           required
-          placeholder="Email"
+          placeholder="example@gmail.com"
           value={email}
           onChange={(e) =>
             setEmail(e.target.value)
@@ -99,12 +117,18 @@ function Customers() {
         <input
           type="tel"
           required
+          maxLength="10"
           pattern="[0-9]{10}"
           title="Phone number must be exactly 10 digits"
-          placeholder="Phone Number"
+          placeholder="9876543210"
           value={phone}
           onChange={(e) =>
-            setPhone(e.target.value)
+            setPhone(
+              e.target.value.replace(
+                /\D/g,
+                ""
+              )
+            )
           }
         />
 
@@ -140,7 +164,9 @@ function Customers() {
               <td>
                 <button
                   onClick={() =>
-                    deleteCustomer(customer.id)
+                    deleteCustomer(
+                      customer.id
+                    )
                   }
                 >
                   Delete
