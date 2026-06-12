@@ -129,19 +129,27 @@ inventory-management-system/
 
 ##  Application Screenshots
 
- Dashboard
+## Dashboard
 
- Products Management
+![Dashboard](screenshots/dashboard.png)
 
- Customers Management
+## Products Management
 
- Orders Management
+![Products](screenshots/products.png)
+
+## Customers Management
+
+![Customers](screenshots/customers.png)
+
+## Orders Management
+
+![Orders](screenshots/orders.png)
 
 
 
 ##  Installation
 
-### Clone Repository
+# Clone Repository
 
 
 git clone https://github.com/KartikT9/inventory-management-system.git
