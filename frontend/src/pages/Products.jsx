@@ -123,7 +123,6 @@ color: "white",
 >
 📦 Products </h1>
 
-```
   <div
     style={{
       background: "#111827",
