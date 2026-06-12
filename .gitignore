@@ -17,3 +17,9 @@ dist/
 
 # Logs
 *.log
+
+# VS Code
+.vscode/
+
+# Vite
+.vite/
